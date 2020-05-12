@@ -32,3 +32,9 @@ Name of column with peptide peak areas
 -p --pval
 Threshold to use for significant p-value when printing plots and printing summary results to console numbers, default =0.01
 
+
+### Output
+Successful analysis will output the following to the directory specified by -d/--dir:
+1. global_data_scaling.png, shows the distributions of peak areas per sample before and after scaling
+2. allplots/, folder containing barplots that visualize the peptides with quantitative differences versus the other peptides in that protein
+3. out.txt, table containing all the peptides that were tested, the proteins they belong to, the raw p-value, and the corrected p-value. 
