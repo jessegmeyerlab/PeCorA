@@ -1,6 +1,6 @@
 t_init=Sys.time()
 
-if (!require("pacman")) install.packages("pacman")
+if (!require("pacman")) install.packages("pacman", repos='http://cran.us.r-project.org')
 pacman::p_load(phia, ggplot2, standardize, optparse)
 
 
@@ -21,11 +21,6 @@ option_list = list(
 opt_parser = OptionParser(option_list=option_list);
 opt = parse_args(opt_parser);
 
-if (is.null(opt$file)){
-  print_help(opt_parser)
-  stop("At least one argument must be supplied (input file).n", call.=FALSE)
-}
-
 # define variables
 input_file = opt$file  # input file is first
 output_file = opt$out # output file name
@@ -33,6 +28,19 @@ control_name = opt$cont # control name is second
 area_column_name = opt$area # area column name
 working_directory = opt$dir  # output directory is last
 sig_pval_lvl = opt$pval  # minimum pvalue
+
+
+print(paste("file name=", opt$file))
+print(paste("value column=", area_column_name))
+print(paste("value column=", opt$area))
+print(paste("output dir=", opt$dir))
+
+
+if (is.null(opt$file)){
+  print_help(opt_parser)
+  stop("At least one argument must be supplied (input file)", call.=FALSE)
+}
+
 
 # make sure the working directory ends in /
 if(substr(working_directory,nchar(working_directory), nchar(working_directory))!="/"){
@@ -45,10 +53,12 @@ suppressWarnings(try(dir.create(working_directory)))
 # read the file
 t<-read.csv(input_file, stringsAsFactors = F)
 
+print(colnames(t))
 ### CHECKS FOR CORRECT COLUMNS
 if(!"Peptide.Modified.Sequence" %in% colnames(t)){
   stop("missing column named Peptide.Modified.Sequence", call.=FALSE)
 }
+
 if(!"Condition" %in% colnames(t)){
   stop("missing column named Condition", call.=FALSE)
 }
@@ -74,7 +84,9 @@ n_reps_total<-length(unique(t$condition_rep))
 
 
 ## filter the data to remove NA, <100 area, and then reps without all measures
-t <- t[-suppressWarnings(which(is.na(as.numeric(t[,area_column_name]))==TRUE)),]
+if(length(which(is.na(as.numeric(t[,area_column_name]))==TRUE))>0){
+  t <- t[-suppressWarnings(which(is.na(as.numeric(t[,area_column_name]))==TRUE)),]
+}
 t <- t[-which(as.numeric(t[,area_column_name])<=100),]
 t <- t[t$modpep_z %in% names(which(table(t$modpep_z)==n_reps_total)),]
 
