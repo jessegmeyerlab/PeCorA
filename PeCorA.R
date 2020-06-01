@@ -30,10 +30,10 @@ working_directory = opt$dir  # output directory is last
 sig_pval_lvl = opt$pval  # minimum pvalue
 
 
-print(paste("file name=", opt$file))
-print(paste("value column=", area_column_name))
-print(paste("value column=", opt$area))
-print(paste("output dir=", opt$dir))
+#print(paste("file name=", opt$file))
+#print(paste("value column=", area_column_name))
+#print(paste("value column=", opt$area))
+#print(paste("output dir=", opt$dir))
 
 
 if (is.null(opt$file)){
@@ -53,7 +53,7 @@ suppressWarnings(try(dir.create(working_directory)))
 # read the file
 t<-read.csv(input_file, stringsAsFactors = F)
 
-print(colnames(t))
+#print(colnames(t))
 ### CHECKS FOR CORRECT COLUMNS
 if(!"Peptide.Modified.Sequence" %in% colnames(t)){
   stop("missing column named Peptide.Modified.Sequence", call.=FALSE)
@@ -95,11 +95,12 @@ t <- t[t$modpep_z %in% names(which(table(t$modpep_z)==n_reps_total)),]
 t$ms1log2<-log2(as.numeric(t[,area_column_name]))
 t$ms1scaled <- scale_by(ms1log2 ~ Condition*BioReplicate, t)
 
-png(paste(working_directory,"gobal_data_scaling.png",sep=""))
+png(paste(working_directory,"gobal_data_scaling.png",sep=""),
+    width = 8, height = 6, units="in", res=300)
 par(las=2, mfcol=c(2,1))
 boxplot(ms1log2 ~ Condition*BioReplicate, t, main="raw data")
 boxplot(ms1scaled ~ Condition*BioReplicate, t, main="globally scaled")
-dev.off()
+quiet<-dev.off()
 
 ########### data now scaled to 0 center ###################
 ###  next subtract the mean value of control from each peptide
@@ -234,10 +235,19 @@ for(x in sign_prots){
         theme(text = element_text(size=20))  +
         ylab("Log2(intensity)-Log2(control)") +
         xlab("Group")+
+        ggtitle(x)+
         scale_fill_manual(values=c("grey", "#00BA38")) +theme(legend.position = "bottom")
-      png(paste(substr(x, start=4,9), y, ".png", sep="_"))
-      print(p)
-      dev.off()
+      ### part for protein string formatted with prefix sp|
+      if(nchar(x)!=6){
+        png(paste(substr(x, start=4,9), y, ".png", sep="_"))
+        print(p)
+        dev.off()
+      }
+      if(nchar(x)==6){
+        png(paste(x, y, ".png", sep="_"))
+        print(p)
+        dev.off()
+      }
     }
   }
 }
