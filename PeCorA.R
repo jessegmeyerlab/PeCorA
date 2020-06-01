@@ -29,6 +29,7 @@ area_column_name = opt$area # area column name
 working_directory = opt$dir  # output directory is last
 sig_pval_lvl = opt$pval  # minimum pvalue
 
+print(sig_pval_lvl)
 
 #print(paste("file name=", opt$file))
 #print(paste("value column=", area_column_name))
@@ -214,7 +215,7 @@ print("output table written")
 # put plots of the peptide in there to look at
 
 
-sign_prots<-as.character(unique(alldf[alldf$adj_pval<=0.01,]$protein))
+sign_prots<-as.character(unique(alldf[alldf$adj_pval<=sig_pval_lvl,]$protein))
 print("started printing peptide figures")
 suppressWarnings(dir.create(paste(working_directory, "/allplots", sep="")))
 setwd(paste(working_directory, "/allplots", sep=""))
@@ -238,12 +239,12 @@ for(x in sign_prots){
         ggtitle(x)+
         scale_fill_manual(values=c("grey", "#00BA38")) +theme(legend.position = "bottom")
       ### part for protein string formatted with prefix sp|
-      if(nchar(x)!=6){
+      if(substr(x, 3,3)=="|"){
         png(paste(substr(x, start=4,9), y, ".png", sep="_"))
         print(p)
         dev.off()
       }
-      if(nchar(x)==6){
+      if(substr(x, 3,3)!="|"){
         png(paste(x, y, ".png", sep="_"))
         print(p)
         dev.off()
