@@ -3,6 +3,9 @@ is an analysis strategy to find peptides within proteins with quantities that di
 
 PeCorA is written in R and can be run from the command line as described below. 
 
+### Preprint:
+https://www.biorxiv.org/content/10.1101/2020.08.21.261818v2
+
 ### Usage 
 Rscript.exe PeCorA.R 
 
