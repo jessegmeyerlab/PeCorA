@@ -5,6 +5,7 @@ PeCorA is written in R and can be run from the command line as described below.
 
 ### Preprint:
 https://www.biorxiv.org/content/10.1101/2020.08.21.261818v2
+To reproduce preprint results, use peptide quantities in input/PeCorA_noZ.zip
 
 ### Usage 
 Rscript.exe PeCorA.R 
@@ -41,3 +42,6 @@ Successful analysis will output the following to the directory specified by -d/-
 1. global_data_scaling.png, shows the distributions of peak areas per sample before and after scaling
 2. allplots/, folder containing barplots that visualize the peptides with quantitative differences versus the other peptides in that protein
 3. out.txt, table containing all the peptides that were tested, the proteins they belong to, the raw p-value, and the corrected p-value. 
+
+
+
