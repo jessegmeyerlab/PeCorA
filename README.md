@@ -5,43 +5,45 @@ PeCorA is written in R and can be run from the command line as described below.
 
 ### Preprint:
 https://www.biorxiv.org/content/10.1101/2020.08.21.261818v2
-To reproduce preprint results, use peptide quantities in input/PeCorA_noZ.zip
+To reproduce preprint results, use peptide quantities `data("PeCorA_noZ")` and see [Vignette](https://github.com/demar01/PeCorA/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
-### Usage 
-Rscript.exe PeCorA.R 
+### Installation and usage 
 
-Required:
--f filename.csv 
-File containing table in long format of peptides, their quantities, and the proteins they belong to. This file must contain the following columns (check spelling and letter case):
-1. "Condition" - group labels of the conditions. Can be more than 2 but must be at least 2. 
-2. "Peptide.Modified.Sequence" - peptide sequence including any modifications
-3. "BioReplicate" - numbering for biological replicates
-4. "Protein" - protein membership for each peptide
+Once installed, load the package by writing in the console
 
-Options:
+```{r}
+library(PeCorA)
+```
+### Available datasets
 
--o --out
-Output file name
+Currently, there are three datasets available in `PeCorA`.
 
--d --dir
-Directory to write output table and images
-example, D:\output\directory
+Data                    |Description                                                                                                          |
+|:-----------------------|:--------------------------------------------------------------------------------------------------------------------|
+|PeCorA_noZ   |Primary mouse microglia dataset (PXD014466)|
+|input.dda.iprg.pg  |BRF Proteome Informatics Research Group (iPRG) 2015 Study: Detection of Differentially Abundant Proteins in Label-Free Quantitative LC-MS/MS Experiments |
+|Covid_peptides  |Large-scale proteomic Analysis of COVID-19 Severity|
 
--c --cont
-Name of the control group within the "Conditions" column
+### Loading data
 
--a --area 
-Name of column with peptide peak areas
+Data is loaded into the `R` session using the `load` function; for
+instance, to get the DDA iPRG data from
+[Choi et al 2017](https://pubmed.ncbi.nlm.nih.gov/27990823/):
 
--p --pval
-Threshold to use for significant p-value when printing plots and printing summary results to console numbers, default =0.01
+```{r}
+data("input.dda.iprg.pg")
+```
 
+### Functions
+The main function of the package is called `PeCorA`, which fits a linear model with interaction between peptides and biological treatment groups.
 
-### Output
-Successful analysis will output the following to the directory specified by -d/--dir:
-1. global_data_scaling.png, shows the distributions of peak areas per sample before and after scaling
-2. allplots/, folder containing barplots that visualize the peptides with quantitative differences versus the other peptides in that protein
-3. out.txt, table containing all the peptides that were tested, the proteins they belong to, the raw p-value, and the corrected p-value. 
+### Vignette 
+See [Vignette](https://github.com/demar01/PeCorA/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
+### Contact
+If you have any questions or suggestions please contact us:
 
+Maria Dermit : maria.dermit at qmul.ac.uk 
+
+Jesse Meyer: jesmeyer at mcw.edu
 
