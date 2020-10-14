@@ -1,0 +1,35 @@
+Package: PeCorA
+Title: Peptide correlation analysis
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = c("Maria","Jesse"),
+           family = c("Dermit","Meyer"),
+           role = c("aut","cre"),
+           email = c("maria.dermit@qmul.ac.uk","jesmeyer@mcw.edu"))
+Description: The PeCorA package detects quantitative disagreements between peptides mapped to the same protein. Linear models are used to assess whether the slope of a peptide’s change across treatment groups differs from the slope of all other peptides assigned to the same protein.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Packaged: 2020-10-14 13:01:20 BST; Maria Dermit
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
+Imports: 
+    here,
+    magrittr,
+    dplyr,
+    MSstats,
+    rlang,
+    standardize,
+    car,
+    assertive,
+    ggplot2
+Suggests: 
+    testthat,
+    BiocStyle,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/demar01/PeCorA
+BugReports: https://github.com/demar01/PeCorA/issues

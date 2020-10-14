@@ -1,0 +1,62 @@
+Peptide correlation analysis
+============================
+
+## The `PeCorA` package
+
+
+`PeCorA` is a package that contains a number of functions to detect discordant peptide quantities in shotgun proteomics sata by Peptide Correlation Analysis. The package also contains a number of published proteomics datasets processed with different processing tools. 
+
+
+### Installation
+You can install `PeCorA` from github downloading the package by cloning the repository.
+
+`$ git clone https://github.com/demar01/PeCorA.git`
+
+`$ R CMD INSTALL PeCorA-master`
+
+Once installed, load the package by writing in the console
+
+```{r}
+library(PeCorA)
+```
+
+### Available datasets
+
+Currently, there are three datasets available in `PeCorA`.
+
+Data                    |Description                                                                                                          |
+|:-----------------------|:--------------------------------------------------------------------------------------------------------------------|
+|PeCorA_noZ   |Primary mouse microglia dataset (PXD014466)|
+|input.dda.iprg.pg  |BRF Proteome Informatics Research Group (iPRG) 2015 Study: Detection of Differentially Abundant Proteins in Label-Free Quantitative LC-MS/MS Experiments |
+|Covid_peptides  |Large-scale proteomic Analysis of COVID-19 Severity|
+
+### Loading data
+
+Data is loaded into the `R` session using the `load` function; for
+instance, to get the DDA iPRG data from
+[Choi et al 2017](https://pubmed.ncbi.nlm.nih.gov/27990823/):
+
+```{r}
+data("input.dda.iprg.pg")
+```
+
+To get more information about a dataset, see its manual page
+
+```{r}
+?input.dda.iprg.pg
+```
+
+### Functions
+The main function of the package is called `PeCorA`, which fits a linear model with interaction between peptides and biological treatment groups.
+
+
+### Vignette 
+See [Vignette](https://github.com/demar01/PeCorA/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
+
+
+### Contact
+If you have any questions or suggestions please contact us:
+
+Maria Dermit : maria.dermit at qmul.ac.uk 
+
+Jesse Meyer: jesmeyer at mcw.edu
