@@ -19,13 +19,6 @@ library(PeCorA)
 To reproduce preprint results, use peptide quantities `data("PeCorA_noZ")` and 
 See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
-### Installation and usage 
-
-Once installed, load the package by writing in the console
-
-```{r}
-library(PeCorA)
-```
 ### Available datasets
 
 Currently, there are three datasets available in `PeCorA`.
