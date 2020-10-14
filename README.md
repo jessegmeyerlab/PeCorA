@@ -5,7 +5,9 @@ PeCorA is written in R and can be run from the command line as described below.
 
 ### Preprint:
 https://www.biorxiv.org/content/10.1101/2020.08.21.261818v2
-To reproduce preprint results, use peptide quantities `data("PeCorA_noZ")` and see [Vignette](https://github.com/demar01/PeCorA/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
+
+To reproduce preprint results, use peptide quantities `data("PeCorA_noZ")` and 
+See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
 ### Installation and usage 
 
@@ -38,7 +40,7 @@ data("input.dda.iprg.pg")
 The main function of the package is called `PeCorA`, which fits a linear model with interaction between peptides and biological treatment groups.
 
 ### Vignette 
-See [Vignette](https://github.com/demar01/PeCorA/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
+See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
 ### Contact
 If you have any questions or suggestions please contact us:
