@@ -1,11 +1,21 @@
 # Peptide Correlation Analysis (PeCorA)
 is an analysis strategy to find peptides within proteins with quantities that differ significantly from other peptides in that protein across treatment groups. At a high level, PeCorA achieves this by looking for a difference in slope of each peptide quantity across treatment group versus all other peptides assigned to the same protein. Practically, this is achieved using a linear model to assess the statistical p-value of the interaction term of peptide group and treatment group. 
 
-PeCorA is written in R and can be run from the command line as described below. 
-
 ### Preprint:
 https://www.biorxiv.org/content/10.1101/2020.08.21.261818v2
 
+### Installation
+You can install `PeCorA` from github downloading the package by cloning the repository.
+
+`$ git clone https://github.com/demar01/PeCorA.git`
+
+`$ R CMD INSTALL PeCorA-master`
+
+Once installed, load the package by writing in the console
+
+```{r}
+library(PeCorA)
+```
 To reproduce preprint results, use peptide quantities `data("PeCorA_noZ")` and 
 See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
