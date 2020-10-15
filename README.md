@@ -18,16 +18,15 @@ library(devtools)
 install_github("jessegmeyerlab/PeCorA")
 ```
 
-Or you can install`PeCorA` from CRAN by typing in R: install.packages("PeCorA")
+Or you can install`PeCorA` from CRAN by typing in R: `install.packages("PeCorA")`
 
-Once installed, load the package by writing in the console
-
+Once installed, load the package by writing in the console:
 
 ```{r}
 library(PeCorA)
 ```
 To reproduce preprint results, use peptide quantities `data("PeCorA_noZ")` and 
-See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
+see [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
 ### Available datasets
 
@@ -51,10 +50,13 @@ data("input.dda.iprg.pg")
 ### How to use
 PeCorA requires a filename.csv file containing table in long format of peptides, their quantities, and the proteins they belong to. This file must at least contain the following columns (check spelling and letter case):
 
-"Condition" - group labels of the conditions. Can be more than 2 but must be at least 2.
-"Peptide.Modified.Sequence" - peptide sequence including any modifications
-"BioReplicate" - numbering for biological replicates
-"Protein" - protein membership for each peptide
+"Condition" - group labels of the conditions. Can be more than 2 but must be at least 2.\
+
+"Peptide.Modified.Sequence" - peptide sequence including any modifications.\
+
+"BioReplicate" - numbering for biological replicates.\
+
+"Protein" - protein membership for each peptide.\
 
 You may need to transform your data into PeCorA-ready format. For example ransform peptides.txt output of MaxQuant into t use function `import_preprocessed_for_PeCorA`.
 
@@ -62,7 +64,7 @@ You may need to transform your data into PeCorA-ready format. For example ransfo
 The main function of the package is called `PeCorA`, which fits a linear model with interaction between peptides and biological treatment groups.
 
 ### Vignette 
-See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
+See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for additional information.
 
 ### Contact
 If you have any questions or suggestions please contact us:
