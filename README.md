@@ -50,13 +50,13 @@ data("input.dda.iprg.pg")
 ### How to use
 PeCorA requires a filename.csv file containing table in long format of peptides, their quantities, and the proteins they belong to. This file must at least contain the following columns (check spelling and letter case):
 
-"Condition" - group labels of the conditions. Can be more than 2 but must be at least 2.\
+"Condition" - group labels of the conditions. Can be more than 2 but must be at least 2.
 
-"Peptide.Modified.Sequence" - peptide sequence including any modifications.\
+"Peptide.Modified.Sequence" - peptide sequence including any modifications.
 
-"BioReplicate" - numbering for biological replicates.\
+"BioReplicate" - numbering for biological replicates.
 
-"Protein" - protein membership for each peptide.\
+"Protein" - protein membership for each peptide.
 
 You may need to transform your data into PeCorA-ready format. For example ransform peptides.txt output of MaxQuant into t use function `import_preprocessed_for_PeCorA`.
 
