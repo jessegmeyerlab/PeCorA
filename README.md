@@ -4,14 +4,24 @@ is an analysis strategy to find peptides within proteins with quantities that di
 ### Preprint:
 https://www.biorxiv.org/content/10.1101/2020.08.21.261818v2
 
-### Installation
+### Install
 You can install `PeCorA` from github downloading the package by cloning the repository.
 
-`$ git clone https://github.com/demar01/PeCorA.git`
+`$ git clone https://github.com/jessegmeyerlab/PeCorA.git`
 
 `$ R CMD INSTALL PeCorA-master`
 
+Alternatively you can install `PeCorA` directly from R using devtools:
+
+```{r}
+library(devtools)
+install_github("jessegmeyerlab/PeCorA")
+```
+
+Or you can install`PeCorA` from CRAN by typing in R: install.packages("PeCorA")
+
 Once installed, load the package by writing in the console
+
 
 ```{r}
 library(PeCorA)
@@ -38,6 +48,15 @@ instance, to get the DDA iPRG data from
 ```{r}
 data("input.dda.iprg.pg")
 ```
+### How to use
+PeCorA requires a filename.csv file containing table in long format of peptides, their quantities, and the proteins they belong to. This file must at least contain the following columns (check spelling and letter case):
+
+"Condition" - group labels of the conditions. Can be more than 2 but must be at least 2.
+"Peptide.Modified.Sequence" - peptide sequence including any modifications
+"BioReplicate" - numbering for biological replicates
+"Protein" - protein membership for each peptide
+
+You may need to transform your data into PeCorA-ready format. For example ransform peptides.txt output of MaxQuant into t use function `import_preprocessed_for_PeCorA`.
 
 ### Functions
 The main function of the package is called `PeCorA`, which fits a linear model with interaction between peptides and biological treatment groups.
