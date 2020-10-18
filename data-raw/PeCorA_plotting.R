@@ -17,10 +17,17 @@ PeCorA_plotting <- function (w,u,v){
         #boxplot(ms1adj ~ allothers*Condition, subtmpdf)
         p=ggplot(subtmpdf, aes(x=Condition, y=ms1adj, fill=allothers)) +
           geom_boxplot(size=1.5) +
-          geom_point(pch = 21, position = position_jitterdodge(), size=3)+
-          theme(text = element_text(size=20)) +
-          ylab("Log2(intensity)-Log2(control)") +
-          xlab("Group")+
+          geom_point(pch = 21, position = position_jitterdodge(), size=5, alpha=0.7)+
+          theme(legend.position = "bottom",
+                legend.title = element_text(size = 25),
+                plot.title = element_text(size=25),
+                legend.text = element_text(size = 25),
+                axis.text.x = element_text(size =25),
+                axis.text.y = element_text(size =25),
+                axis.title.x = element_text(size =25),
+                axis.title.y = element_text(size =25))+
+          ylab("Scaled Log2(Area)") +
+          xlab("")+
           ggtitle(x)+
           scale_fill_manual(values=c("grey", "#00BA38")) +theme(legend.position = "bottom")
         ### part for protein string formatted with prefix sp|

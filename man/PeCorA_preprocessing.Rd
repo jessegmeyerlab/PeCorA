@@ -27,7 +27,10 @@ Peak areas are log transformed and scaled to center.After global scaling, each p
 \examples{
 \dontrun{
 if(interactive()){
- scaled_peptides <- PeCorA_preprocessing(t)
+ scaled_peptides <- PeCorA_preprocessing(t,
+                                         area_column_name=8,
+                                         threshold_to_filter=100,
+                                         control_name="cntrl")
  }
 }
 }

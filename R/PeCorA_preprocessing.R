@@ -10,7 +10,10 @@
 #' @examples
 #' \dontrun{
 #' if(interactive()){
-#'  scaled_peptides <- PeCorA_preprocessing(t)
+#'  scaled_peptides <- PeCorA_preprocessing(t,
+#'                                          area_column_name=8,
+#'                                          threshold_to_filter=100,
+#'                                          control_name="cntrl")
 #'  }
 #' }
 #' @rdname PeCorA_preprocessing
@@ -25,7 +28,7 @@ PeCorA_preprocessing <- function (t,area_column_name,threshold_to_filter,control
   t["condition_rep"] = paste(t$Condition, t$BioReplicate, sep = "_")
   n_reps_total <- length(unique(t$condition_rep))
   ## filter the data to remove NA, <100 area, and then reps without all measures
-  if(length(which(is.na(as.numeric(t[,area_column_name]))==TRUE))>0){
+  if(suppressWarnings(length(which(is.na(as.numeric(t[,area_column_name]))==TRUE))>0)){
     t <- t[-suppressWarnings(which(is.na(as.numeric(t[,area_column_name]))==TRUE)),]
   }
   t <- t[-which(as.numeric(t[,area_column_name])<=threshold_to_filter),]
@@ -34,7 +37,7 @@ PeCorA_preprocessing <- function (t,area_column_name,threshold_to_filter,control
 
   ## scale the data and then plot
   t$ms1log2<-log2(as.numeric(t[,area_column_name]))
-  t$ms1scaled <- scale_by(ms1log2 ~ Condition*BioReplicate, t)
+  t$ms1scaled <- standardize::scale_by(ms1log2 ~ Condition*BioReplicate, t)
 
   ########### data now scaled to 0 center ###################
   ######I am going to do a subset #######
@@ -54,7 +57,7 @@ PeCorA_preprocessing <- function (t,area_column_name,threshold_to_filter,control
   print("scaling peptides to control == 0")
   pb <- txtProgressBar(min = 0, max = length(unique(t$modpep_z)), style = 3)
   for(x in unique(t$modpep_z) ){
-    ms1adj[which(t$modpep_z==x)] <- ms1scaled_full[which(t$modpep_z==x)] - mean(ms1scaled_cntrl[which(t_cntrl$modpep_z==x)])  # subtract the ave of control
+    ms1adj[which(t$modpep_z==x)] <- suppressWarnings(ms1scaled_full[which(t$modpep_z==x)] - mean(ms1scaled_cntrl[which(t_cntrl$modpep_z==x)]))  # subtract the ave of control
     setTxtProgressBar(pb, i)
     i=i+1
   }

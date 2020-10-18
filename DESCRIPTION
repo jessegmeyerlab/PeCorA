@@ -14,22 +14,20 @@ Packaged: 2020-10-14 13:01:20 BST; Maria Dermit
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: 
-    R (>= 2.10)
+    R (>= 2.10), ggplot2, standardize, reshape
 Imports: 
     here,
     magrittr,
     dplyr,
     MSstats,
     rlang,
-    standardize,
     car,
-    assertive,
-    ggplot2
+    assertive
 Suggests: 
     testthat,
     BiocStyle,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://github.com/demar01/PeCorA
-BugReports: https://github.com/demar01/PeCorA/issues
+URL: https://github.com/jessegmeyerlab/PeCorA
+BugReports: https://github.com/jessegmeyerlab/PeCorA/issues
