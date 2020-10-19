@@ -1,47 +1,75 @@
 # Peptide Correlation Analysis (PeCorA)
 is an analysis strategy to find peptides within proteins with quantities that differ significantly from other peptides in that protein across treatment groups. At a high level, PeCorA achieves this by looking for a difference in slope of each peptide quantity across treatment group versus all other peptides assigned to the same protein. Practically, this is achieved using a linear model to assess the statistical p-value of the interaction term of peptide group and treatment group. 
 
-PeCorA is written in R and can be run from the command line as described below. 
-
 ### Preprint:
 https://www.biorxiv.org/content/10.1101/2020.08.21.261818v2
-To reproduce preprint results, use peptide quantities in input/PeCorA_noZ.zip
 
-### Usage 
-Rscript.exe PeCorA.R 
+### Install
+You can install `PeCorA` from github downloading the package by cloning the repository.
 
-Required:
--f filename.csv 
-File containing table in long format of peptides, their quantities, and the proteins they belong to. This file must contain the following columns (check spelling and letter case):
-1. "Condition" - group labels of the conditions. Can be more than 2 but must be at least 2. 
-2. "Peptide.Modified.Sequence" - peptide sequence including any modifications
-3. "BioReplicate" - numbering for biological replicates
-4. "Protein" - protein membership for each peptide
+`$ git clone https://github.com/jessegmeyerlab/PeCorA.git`
 
-Options:
+`$ R CMD INSTALL PeCorA-master`
 
--o --out
-Output file name
+Alternatively you can install `PeCorA` directly from R using devtools:
 
--d --dir
-Directory to write output table and images
-example, D:\output\directory
+```{r}
+library(devtools)
+install_github("jessegmeyerlab/PeCorA")
+```
 
--c --cont
-Name of the control group within the "Conditions" column
+Or you can install`PeCorA` from CRAN by typing in R: `install.packages("PeCorA")`
 
--a --area 
-Name of column with peptide peak areas
+Once installed, load the package by writing in the console:
 
--p --pval
-Threshold to use for significant p-value when printing plots and printing summary results to console numbers, default =0.01
+```{r}
+library(PeCorA)
+```
+To reproduce preprint results, use peptide quantities `data("PeCorA_noZ")` and 
+see [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for complete workflow.
 
+### Available datasets
 
-### Output
-Successful analysis will output the following to the directory specified by -d/--dir:
-1. global_data_scaling.png, shows the distributions of peak areas per sample before and after scaling
-2. allplots/, folder containing barplots that visualize the peptides with quantitative differences versus the other peptides in that protein
-3. out.txt, table containing all the peptides that were tested, the proteins they belong to, the raw p-value, and the corrected p-value. 
+Currently, there are three datasets available in `PeCorA`.
 
+Data                    |Description                                                                                                          |
+|:-----------------------|:--------------------------------------------------------------------------------------------------------------------|
+|PeCorA_noZ   |Primary mouse microglia dataset (PXD014466)|
+|input.dda.iprg.pg  |BRF Proteome Informatics Research Group (iPRG) 2015 Study: Detection of Differentially Abundant Proteins in Label-Free Quantitative LC-MS/MS Experiments |
+|Covid_peptides  |Large-scale proteomic Analysis of COVID-19 Severity|
 
+### Loading data
+
+Data is loaded into the `R` session using the `load` function; for
+instance, to get the DDA iPRG data from
+[Choi et al 2017](https://pubmed.ncbi.nlm.nih.gov/27990823/):
+
+```{r}
+data("input.dda.iprg.pg")
+```
+### How to use
+PeCorA requires a filename.csv file containing table in long format of peptides, their quantities, and the proteins they belong to. This file must at least contain the following columns (check spelling and letter case):
+
+"Condition" - group labels of the conditions. Can be more than 2 but must be at least 2.
+
+"Peptide.Modified.Sequence" - peptide sequence including any modifications.
+
+"BioReplicate" - numbering for biological replicates.
+
+"Protein" - protein membership for each peptide.
+
+You may need to transform your data into PeCorA-ready format. For example ransform peptides.txt output of MaxQuant into t use function `import_preprocessed_for_PeCorA`.
+
+### Functions
+The main function of the package is called `PeCorA`, which fits a linear model with interaction between peptides and biological treatment groups.
+
+### Vignette 
+See [Vignette](https://github.com/demar01/PeCorA-1/blob/master/vignettes/PeCorA_vignette.pdf) for additional information.
+
+### Contact
+If you have any questions or suggestions please contact us:
+
+Maria Dermit : maria.dermit at qmul.ac.uk 
+
+Jesse Meyer: jesmeyer at mcw.edu
 
