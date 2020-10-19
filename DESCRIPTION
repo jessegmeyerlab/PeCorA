@@ -14,7 +14,7 @@ Packaged: 2020-10-14 13:01:20 BST; Maria Dermit
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: 
-    R (>= 2.10), ggplot2, standardize, reshape, MSstats
+    R (>= 2.10), ggplot2, standardize, reshape
 Imports: 
     here,
     magrittr,
