@@ -1,8 +1,4 @@
-# rgovcan <img src="man/figures/PECORA_hex.png" align="right" height="150"/>
-
-## Easy access to the Canadian Open Government Portal
-
-# Peptide correlation analysis
+# Peptide correlation analysis (PeCorA) <img src="man/figures/PECORA_hex.png" align="right" height="150"/>
 
 ## The `PeCorA` package
 
