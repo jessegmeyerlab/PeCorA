@@ -1,9 +1,6 @@
 # Peptide correlation analysis (PeCorA) <img src="man/figures/PECORA_hex.png" align="right" height="150"/>
 
-`PeCorA` is a package that contains a number of functions to detect
-discordant peptide quantities in shotgun proteomics sata by Peptide
-Correlation Analysis. The package also contains a number of published
-proteomics datasets processed with different processing tools.
+`PeCorA` is short for "Peptide Correlation Analysis", which is an R package that enables detection of discordant peptide quantities in shotgun proteomics data. The package also contains a number of published proteomics datasets processed with different processing tools to demonstrate the workflow.
 
 ### Install
 
