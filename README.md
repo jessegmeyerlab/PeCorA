@@ -79,7 +79,7 @@ model with interaction between peptides and biological treatment groups.
 ### Vignette
 
 See
-[Vignette](https://github.com/demar01/PeCorA/blob/master/vignettes/PeCorA_vignette.pdf)
+[Vignette](https://github.com/jessegmeyerlab/PeCorA/blob/master/vignettes/PeCorA_vignette.pdf)
 for complete workflow.
 
 ### Contact
