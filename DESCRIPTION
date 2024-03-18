@@ -20,8 +20,7 @@ Imports:
     magrittr,
     dplyr,
     rlang,
-    car,
-    assertive
+    car
 Suggests: 
     testthat,
     BiocStyle,
