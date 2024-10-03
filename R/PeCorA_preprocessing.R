@@ -31,7 +31,7 @@ PeCorA_preprocessing <- function (t,area_column_name,threshold_to_filter,control
   if(suppressWarnings(length(which(is.na(as.numeric(t[,area_column_name]))==TRUE))>0)){
     t <- t[-suppressWarnings(which(is.na(as.numeric(t[,area_column_name]))==TRUE)),]
   }
-  t <- t[-which(as.numeric(t[,area_column_name])<=threshold_to_filter),]
+  t <- t[t[, area_column_name] > threshold_to_filter, ]
   t <- t[t$modpep_z %in% names(which(table(t$modpep_z)==n_reps_total)),]
 
 
